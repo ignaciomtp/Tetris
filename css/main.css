@@ -1,0 +1,96 @@
+body{
+    
+}
+
+.borde1{
+    border: 1px solid black;
+}
+
+.borde2{
+    border:1px solid red;
+}
+
+.juego{
+    min-height: 650px;
+}
+
+.limpiar{
+    clear:both;
+}
+
+#boton-empezar{
+    margin: 30px 0;
+    text-align: center;
+}
+
+.jumbo2{
+    padding:20px;
+    
+}
+
+#canvasJuego{
+    border: 1px solid #58ACFA;
+}
+
+.caja{
+    width:133px;
+    height: 75px;
+    
+    margin:0 3px;
+    float:left;
+
+}
+
+.caja span{
+    min-width: 30px;
+}
+
+.sup{
+    width:280px;
+    margin:20px auto;
+    color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    min-height: 80px;
+}
+
+.boton-abajo{
+    margin:15px 0;
+    padding-left: 30px;
+    
+}
+
+#marcador, #nivel{
+    font-size: 120%;
+    font-weight: bold;
+    color: #58ACFA;
+    margin:0 15px;
+}
+
+#proxima{
+    height: 40px;
+
+}
+
+.mitad{
+    width:50%;
+    float:left;
+    padding: 0 !important;
+}
+
+.mitad img{
+    transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -webkit-transform: scale(0.6, 0.6);    
+    margin-top: -15px;
+}
+
+.marcadores{
+    background-color: #000;
+    border:1px solid #58ACFA;
+    padding: 10px;
+}
+
+#controles-movil{
+    display:none;
+}

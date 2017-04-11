@@ -1,0 +1,48 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Tetris</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container theme-showcase" role="main">
+        <div class="jumbo2">
+            <div class="col-md-3 borde2">
+                <div id="proxima" class="text-center">
+                    
+                </div>
+                
+                <br>
+
+                <div id="marcador">
+                    LÍNEAS: 0
+                </div>
+                
+                <div id="velocidad">
+                    
+                </div>
+                
+                <div class="boton-empezar">
+                    <button type="button" class="btn btn-lg btn-success" id="empezar" onclick="lanzarPieza()">Empezar</button>
+                </div>
+                
+            </div>
+            <div class="col-md-9 borde1 juego">
+                <div id="game">
+                    <canvas id="canvasJuego" width="320" height="600"></canvas>
+                </div>
+            </div>
+
+            <div class="limpiar"></div>
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" src="js/tetris.js"></script>
+    
+
+</body>
+</html>
