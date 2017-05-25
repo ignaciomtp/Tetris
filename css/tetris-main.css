@@ -1,0 +1,51 @@
+canvas{
+    border:1px solid #FFF;
+}
+
+.elementoMarcador{
+    border:1px solid #FFF;
+    background-color: #000;
+    width: 100px;
+    height: 80px;
+    text-align: center;
+    padding: 15px;
+    display: inline-block;
+}
+
+.elementoMarcador img{
+    transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -webkit-transform: scale(0.6, 0.6);    
+    
+}
+
+#controles-movil{
+    display:none;
+}
+
+.col-dcha{
+    width:120px;
+    height: 100%;
+    display: inline-block;
+    
+    position:relative;
+    text-align: center;
+}
+
+.borde{
+    border:1px solid #FFF;
+}
+
+.lateral{
+    height: 480px;
+    
+}
+
+.abajo{
+    position: absolute;
+    bottom: 0;
+    left: 15px;    
+    text-align: center;
+    min-width: 100px;
+}
+

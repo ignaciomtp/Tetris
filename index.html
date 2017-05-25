@@ -6,52 +6,82 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/tetris-main.css">
 </head>
 <body>
-    <div class="container theme-showcase" role="main">
-        <div class="jumbo2 text-center">
-            <div class="row">
-                <div class="sup">
-                    <div class="marcadores">
-                        <div class="mitad">
-                            <p>
-                                NIVEL: <span id="nivel">1</span>  
-                            </p>
-
-                            <div>
-                                PRÓXIMA:   
-                            </div>                        
-                        </div>
-
-                        <div class="mitad">
-                            <p>
-                                LÍNEAS: <span id="marcador">0</span>
-                            </p>
-
-                            <div id="proxima"></div>  
-                        </div>
-                        <div class="limpiar"></div>                        
-                    </div>
-                </div>
+    <h1>Tetris</h1>
+    <div class="jumbo2">
+        <div class="col-md-4 text-right lateral">
+            <div class="col-dcha">
+                <h5>GUARDAR:   </h5>
+               
                 
-            </div>
+                <div class="elementoMarcador">
+                    <div id="guardada"></div>
+                </div>    
 
-            <div class="row">
-                <div id="game">
-                    <canvas id="canvasJuego" width="280" height="480"></canvas>
-                </div>        
+                <div class="abajo">
+                    <h5>NIVEL: </h5>
+                    <div id="nivel">1</div>
+                </div>                 
+            </div>
+            <div class="limpiar"></div>
+        </div>
+        
+        <div class="col-md-4 text-center">
+            <div id="game">
+                <canvas id="canvasJuego" width="280" height="480"></canvas>
+            </div>                   
+        </div>
+        
+        <div class="col-md-4 text-left lateral">
+            <h5>PRÓXIMA:   </h5>
+            <div class="elementoMarcador">
                 
-                <div class="boton-empezar">
-                    <button type="button" class="btn btn-lg btn-success" id="empezar" onclick="lanzarPieza()">Empezar</button>
-                </div>
+                <div id="proxima"> </div>         
+                 
             </div>
-
+            
+            <div class="abajo">
+                <h5>LÍNEAS: </h5>
+                <div id="marcador">0</div>
+            </div>
         </div>
     </div>
     
+        
+    <!-- Modal HTML -->
+    <div id="controles" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h2 class="modal-title text-center">Controles</h2>
+                </div>
+                <div class="modal-body text-center">
+                    <p>
+                        Mover pieza: flechas de dirección.<br />
+                        Girar: tecla A o D.<br />
+                        Cambiar Pieza: barra espaciadora
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-lg btn-success" id="empezar" onclick="lanzarPieza()">Empezar</button>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+    </div>	        
+    
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/tetris_1.js"></script>
     
-
+    <script>
+        $('#controles').modal('show');
+    </script>
 </body>
 </html>

@@ -5,7 +5,7 @@ var canvas = document.getElementById("canvasJuego");
 var context = canvas.getContext("2d");
 
 var proximaPieza = Math.round(Math.random()*6); 
-
+var piezaGuardada = -1;
 var cayendo;
 var otraPieza = 1;
 var nivel = 1;
@@ -327,9 +327,9 @@ Pieza.prototype.caer = function(){
     context.drawImage(this.imagen, this.posX, this.posY);
     if(comprobarCasillasInferiores(p) || this.posY + this.alto >= 480){
         this.contacto = 1;
-        console.log("Ha tocado fondo");
+    /*    console.log("Ha tocado fondo");
         console.log(this.posX, this.posY);
-        
+        */
         clearInterval(cayendo);
         
     }
@@ -361,6 +361,8 @@ document.addEventListener('keydown', function(event) {
     }
     else if(event.keyCode == 68) {
         rotarDerecha();
+    }else if(event.keyCode == 32){
+        cambiarPieza(p);
     }
 });
 
@@ -372,7 +374,7 @@ document.addEventListener('keydown', function(event){
         case 39:
             moverPiezaD();
             break;
-        case 32:
+        case 192:
             jugando = 0;
             break;
         case 80:
@@ -434,6 +436,12 @@ function rotarIzquierda(){
 function blanquear(){
     context.fillStyle = "black";
     context.fillRect(0, 0, 280, 480);
+}
+
+function blanquear3(anchoPieza, posX, posY){
+    context.fillStyle = "black";
+    context.fillRect(posX, 0, anchoPieza, posY);
+    
 }
 
 function blanquear2(x, y, anchoPieza, altoPieza, tipoPieza, inclinacion){
@@ -1062,7 +1070,9 @@ function comprobarCasillasInferiores(pieza){ //
 }
 
 function lanzarPieza(){
+    $('#controles').modal('hide');
     if(jugando == 1){
+        
         p = new Pieza();
         
         otraPieza = 0;
@@ -1145,7 +1155,8 @@ function comprobarLineas(pieza){
                 copiarCanvas(pieza.posY);
                 numLineas++;
                 contNivel++;
-                document.getElementById("marcador").innerHTML = numLineas;
+                //document.getElementById("marcador").innerHTML = numLineas;
+                $('#marcador').html(numLineas);
             }
             break;
         case 40:
@@ -1162,7 +1173,8 @@ function comprobarLineas(pieza){
                     copiarCanvas(i * 20);
                     numLineas++;
                     contNivel++;
-                    document.getElementById("marcador").innerHTML = numLineas;
+                    //document.getElementById("marcador").innerHTML = numLineas;
+                    $('#marcador').html(numLineas);
                 }
             }
             break;
@@ -1181,7 +1193,8 @@ function comprobarLineas(pieza){
                     copiarCanvas(i * 20);
                     numLineas++;
                     contNivel++;
-                    document.getElementById("marcador").innerHTML = numLineas;
+                    //document.getElementById("marcador").innerHTML = numLineas;
+                    $('#marcador').html(numLineas);
                 }
             }
             break;        
@@ -1200,7 +1213,8 @@ function comprobarLineas(pieza){
                     copiarCanvas(i * 20);
                     numLineas++;
                     contNivel++;
-                    document.getElementById("marcador").innerHTML = numLineas;
+                    
+                    $('#marcador').html(numLineas);
                 }
             }
             break;            
@@ -1236,16 +1250,80 @@ function dibujarProxima(proxima){
            
     }    
     
-    document.getElementById('proxima').innerHTML = "<img src='" + url + "' />";
     
+    $('#proxima').html("<img src='" + url + "' />");
 }
+
+
+function dibujarGuardada(guardada){
+    var url;
+    switch(guardada){
+        case 0:
+            url = "img/barra1.png";
+            break;
+        case 1:
+            url = "img/cubo.png";
+            break;
+        case 2:
+            url = "img/ld1.png";
+            break;
+        case 3:
+            url = "img/li1.png";
+            break;
+        case 4:
+            url = "img/sd1.png";
+            break;
+        case 5:
+            url = "img/si1.png";
+            break;
+        case 6:
+            url = "img/t1.png";
+            break;
+           
+    }    
+    
+    //document.getElementById('proxima').innerHTML = "<img src='" + url + "' />";
+    $('#guardada').html("<img src='" + url + "' />");
+}
+
+function cambiarPieza(Pieza){
+    if(piezaGuardada == -1){
+        blanquear3(Pieza.ancho, Pieza.posX, Pieza.posY + Pieza.alto);
+        piezaGuardada = Pieza.tipo;
+        dibujarGuardada(piezaGuardada);
+        Pieza.tipo = proximaPieza;
+        Pieza.inc = 1;
+        proximaPieza = Math.round(Math.random()*6);
+        dibujarProxima(proximaPieza);
+        blanquear3(Pieza.ancho, Pieza.posX, Pieza.posY + Pieza.alto);
+        Pieza.posY = 0;
+        Pieza.cargarDimensiones();
+        Pieza.cargarImg();
+        //context.drawImage(Pieza.imagen, Pieza.posX, Pieza.posY);
+    }
+    else{
+        blanquear3(Pieza.ancho, Pieza.posX, Pieza.posY + Pieza.alto);
+        var temporal = piezaGuardada;
+        piezaGuardada = Pieza.tipo;
+        dibujarGuardada(piezaGuardada);
+        Pieza.tipo = temporal;
+        Pieza.inc = 1;
+        blanquear3(Pieza.ancho, Pieza.posX, Pieza.posY + Pieza.alto);
+        Pieza.posY = 0;
+        Pieza.cargarDimensiones();
+        Pieza.cargarImg();
+        //context.drawImage(Pieza.imagen, Pieza.posX, Pieza.posY);
+    }
+}
+
 
 function aumentarVelocidad(){
     if(contNivel >= 20){
         velocidad -= 50;
         contNivel = 0;
         nivel++;
-        document.getElementById('nivel').innerHTML = nivel;
+        $('#nivel').html(nivel);
+        
     }
     
    // document.getElementById('velocidad').innerHTML = velocidad;
